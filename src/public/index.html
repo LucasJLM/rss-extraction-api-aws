@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSS Feed</title>
+</head>
+<body>
+  <h1>Dados RSS</h1>
+
+  <button onclick="extractDataAndShow()">Extrair Dados do RSS e Exibir</button>
+  <div id="rss-data">
+    <!-- Aqui os dados serão exibidos -->
+  </div>
+
+  <script>
+    // Função para extrair dados do RSS e mostrar na tela
+    async function extractDataAndShow() {
+      try {
+        // Primeiro, chama a rota para iniciar a extração de dados
+        const response = await fetch('/extract-rss');
+        if (!response.ok) {
+          throw new Error('Erro ao iniciar extração');
+        }
+
+        // Agora, chama a rota para obter os dados extraídos do S3
+        const dataResponse = await fetch('/get-rss-data');
+        if (!dataResponse.ok) {
+          throw new Error('Erro ao obter dados');
+        }
+        
+        const data = await dataResponse.json();
+        const rssDataDiv = document.getElementById('rss-data');
+
+        // Exibe os dados na página
+        if (data && data.length > 0) {
+          rssDataDiv.innerHTML = data.map(item => `
+            <div>
+              <h3>${item.title}</h3>
+              <p>${item.description}</p>
+              <a href="${item.link}" target="_blank">Leia mais</a>
+            </div>
+          `).join('');
+        } else {
+          rssDataDiv.innerHTML = '<p>Nenhum dado encontrado.</p>';
+        }
+      } catch (error) {
+        console.error(error);
+        document.getElementById('rss-data').innerHTML = 'Erro ao carregar os dados.';
+      }
+    }
+  </script>
+</body>
+</html>

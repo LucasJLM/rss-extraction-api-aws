@@ -1,0 +1,22 @@
+{
+  "name": "sprints-2-3-pb-aws-dezembro",
+  "version": "1.0.0",
+  "description": "- [📋 Descrição](#-descrição)  \r - [✨ Funcionalidades Planejadas](#-funcionalidades-planejadas)  \r - [🛠️ Tecnologias Planejadas](#️-tecnologias-planejadas)  \r - [🌎 Escolha do Site com RSS](#-escolha-do-site-com-rss)  \r - [⏭️ Próximas Etapas](#️-próximas-etapas)",
+  "main": "src/api/index.js",
+  "scripts": {
+    "start": "node src/api/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1692.0",
+    "axios": "^1.7.9",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security",
+    "rss-parser": "^3.13.0",
+    "xml2js": "^0.6.2"
+  }
+}

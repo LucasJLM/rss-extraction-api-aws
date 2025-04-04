@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: grupo-3
+    container_name: espn-container-v2
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app  # Mapeia o diretório atual para /app no contêiner
+    command: npm - start
